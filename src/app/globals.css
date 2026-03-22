@@ -1,0 +1,102 @@
+/* ── Google Fonts — must come before @import "tailwindcss" ── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Outfit:wght@200;300;400;500&display=swap');
+
+/* Tailwind v4 — single import replaces @tailwind directives */
+@import "tailwindcss";
+
+/* ── Design tokens via CSS custom properties ─── */
+:root {
+  --ink:   #06040a;
+  --deep:  #0e0a12;
+  --cream: #ede5d8;
+  --gold:  #c9993a;
+  --gold2: #f0c96a;
+  --muted: rgba(237, 229, 216, 0.45);
+  --border: rgba(201, 153, 58, 0.15);
+}
+
+/* ── Tailwind v4 theme extension ─────────────── */
+/* In v4, extend theme inside CSS instead of tailwind.config */
+@theme {
+  --color-ink:   #06040a;
+  --color-deep:  #0e0a12;
+  --color-cream: #ede5d8;
+  --color-gold:  #c9993a;
+  --color-gold2: #f0c96a;
+
+  --font-cormorant: "Cormorant Garamond", serif;
+  --font-outfit: "Outfit", sans-serif;
+
+  --animate-fade-up: fadeUp 0.9s ease forwards;
+  --animate-pulse2:  pulse2 2s ease-in-out infinite;
+  --animate-marquee: marquee 22s linear infinite;
+}
+
+/* ── Base reset ──────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: "Outfit", sans-serif;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Film grain overlay ──────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px;
+  opacity: 0.026;
+  pointer-events: none;
+  z-index: 998;
+}
+
+/* ── Keyframes ───────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse2 {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Scroll reveal utility ───────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Cormorant shorthand ─────────────────────── */
+.font-cormorant {
+  font-family: "Cormorant Garamond", serif;
+}
