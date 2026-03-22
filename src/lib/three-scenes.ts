@@ -264,7 +264,7 @@ export function buildStage2_Grind(): JourneyStage {
 // ═══════════════════════════════════════════════════════════════
 export function buildStage3_Process(key: ProductKey, def: ProductDef): JourneyStage {
   const g = new THREE.Group();
-
+console.log(def)
   if (key === "coldbrew") {
     const jar = new THREE.Mesh(
       new THREE.CylinderGeometry(0.62, 0.62, 1.9, 48),

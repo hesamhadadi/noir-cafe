@@ -126,7 +126,7 @@ export default function JourneyCanvas({ productKey, activeStep, scrollProgress, 
     if (!S) return;
 
     Promise.all([import("three"), import("@/lib/three-scenes"), import("@/lib/products")])
-      .then(([_THREE, scenes, { PRODUCTS }]) => {
+      .then(([, scenes, { PRODUCTS }]) => {
         stagesRef.current.forEach((s) => S.remove(s.g));
         const def  = PRODUCTS[productKey];
         const bdat = scenes.randomBeanData();
