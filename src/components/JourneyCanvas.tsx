@@ -75,7 +75,7 @@ export default function JourneyCanvas({ productKey, activeStep, scrollProgress, 
         scenes.buildStage3_Process(productKeyRef.current, def),
         scenes.buildStage4_FinalCup(productKeyRef.current, def),
       ];
-      initial.forEach((s, i) => { S.add(s.g); s.g.visible = i === 0; });
+      initial.forEach((s, i) => { S.add(s.g); s.g.visible = i === activeStepRef.current; });
       stagesRef.current = initial;
 
       const onMove = (e: MouseEvent) => {
@@ -137,7 +137,7 @@ export default function JourneyCanvas({ productKey, activeStep, scrollProgress, 
           scenes.buildStage3_Process(productKey, def),
           scenes.buildStage4_FinalCup(productKey, def),
         ];
-        next.forEach((s, i) => { S.add(s.g); s.g.visible = i === 0; });
+        next.forEach((s, i) => { S.add(s.g); s.g.visible = i === activeStepRef.current; });
         stagesRef.current = next;
       });
   }, [productKey]);
